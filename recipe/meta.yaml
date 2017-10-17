@@ -38,14 +38,19 @@ test:
     - bokeh.application
     - bokeh.application.handlers
     - bokeh.client
+    - bokeh.colors
     - bokeh.command
     - bokeh.command.subcommands
     - bokeh.core
     - bokeh.core.property
     - bokeh.core.validation
+    - bokeh.document
+    - bokeh.embed
+    - bokeh.io
     - bokeh.models
     - bokeh.models.widgets
     - bokeh.plotting
+    - bokeh.protocol.messages
     - bokeh.sampledata
     - bokeh.server
     - bokeh.protocol
