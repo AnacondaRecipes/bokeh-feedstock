@@ -9,7 +9,7 @@ source:
   sha256: ceeb6a75afc1b2de00c2b8b6da121dec3fb77031326897b80d4375a70e96aebf
 
 build:
-  number: 1000
+  number: 0
   script: python -m pip install --no-deps --ignore-installed .
   entry_points:
     - bokeh = bokeh.__main__:main
