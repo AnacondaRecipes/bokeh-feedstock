@@ -14,7 +14,7 @@ build:
   # Currently xyzservices >=2021.09.1 is not available on s390x
   skip: true  # [py<38 or s390x]
   script: 
-    - {{ PYTHON }} -m pip install .
+    - {{ PYTHON }} -m pip install . -vv
   entry_points:
     - bokeh = bokeh.__main__:main
 
@@ -24,7 +24,8 @@ requirements:
     - colorama
     - pip
     - setuptools >=64
-    - setuptools-git-versioning
+    # Should be setuptools-git-versioning <2, see https://github.com/dolfinus/setuptools-git-versioning#pyprojecttoml
+    - setuptools-git-versioning <2
     - wheel
   run:
     - python
@@ -66,6 +67,7 @@ test:
     - pip check || true   # [not win]
     - pip check || (exit 1)  # [win]
     - bokeh --help
+    - bokeh info
 
 about:
   home: https://bokeh.org/
