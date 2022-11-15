@@ -65,7 +65,7 @@ test:
     - pip
   commands:
     - pip check || true   # [not win]
-    - pip check || (exit 1)  # [win]
+    - pip check || cmd /K "exit /b 0"  # [win]
     - bokeh --help
     - bokeh info
 
