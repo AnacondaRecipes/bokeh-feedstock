@@ -1,17 +1,18 @@
-{% set version = "2.4.3" %}
+{% set name = "bokeh" %}
+{% set version = "3.0.2" %}
 
 package:
-  name: bokeh
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/b/bokeh/bokeh-{{ version }}.tar.gz
-  sha256: ef33801161af379665ab7a34684f2209861e3aefd5c803a21fbbb99d94874b03
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
+  sha256: fb537cf24f5a25a6739393f9906ddf8c913bfebc4cb120d342e8262889326f7d
 
 build:
   number: 0
-  # trigger: 1
-  skip: true  # [py<37]
+  # Currently xyzservices >=2021.09.1 is not available on s390x
+  skip: true  # [py<38 or s390x]
   script:
     - {{ PYTHON }} -m pip install . -vv
   entry_points:
@@ -20,18 +21,23 @@ build:
 requirements:
   host:
     - python
+    - colorama
     - pip
     - setuptools
+    # Should be setuptools-git-versioning <2, see https://github.com/dolfinus/setuptools-git-versioning#pyprojecttoml
+    - setuptools-git-versioning <2
     - wheel
   run:
     - python
     - jinja2 >=2.9
+    - contourpy >=1
     - numpy >=1.11.3
     - packaging >=16.8
+    - pandas >=1.2
     - pillow >=7.1.0
     - pyyaml >=3.10
     - tornado >=5.1
-    - typing_extensions >=3.10.0
+    - xyzservices >=2021.09.1
 
 test:
   imports:
@@ -55,18 +61,19 @@ test:
     - bokeh.sphinxext
     - bokeh.themes
     - bokeh.util
-  commands:
-    - pip check || true   # [not win]
-    - pip check || 1      # [win]
-    - bokeh --help
   requires:
     - pip
+  commands:
+    - pip check || true   # [not win]
+    - pip check || cmd /K "exit /b 0"  # [win]
+    - bokeh --help
+    - bokeh info
 
 about:
   home: https://bokeh.org/
   license: BSD-3-Clause
-  license_file: LICENSE.txt
   license_family: BSD
+  license_file: LICENSE.txt
   summary: Bokeh is an interactive visualization library for modern web browsers. 
   description: |
     Bokeh is an interactive visualization library for modern web browsers. 
@@ -74,8 +81,7 @@ about:
     and affords high-performance interactivity over large or streaming 
     datasets. Bokeh can help anyone who would like to quickly and easily 
     make interactive plots, dashboards, and data applications.
-  doc_url: https://docs.bokeh.org/en/latest/docs/user_guide.html
-  doc_source_url: https://github.com/bokeh/bokeh/tree/main/sphinx/source/docs
+  doc_url: https://docs.bokeh.org
   dev_url: https://github.com/bokeh/bokeh
 
 extra:
