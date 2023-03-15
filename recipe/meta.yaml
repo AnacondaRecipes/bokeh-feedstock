@@ -1,5 +1,5 @@
 {% set name = "bokeh" %}
-{% set version = "3.0.3" %}
+{% set version = "3.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
-  sha256: 1c28471ef5e6110ba5bed513137fd26054ebc4454bc768650eaeefc53b898a8a
+  sha256: 9047dfe50a671b5e19ca588fd90a8e6bff197114a5dbd6a59cc2678942c27887
 
 build:
   number: 0
-  # Currently xyzservices >=2021.09.1 is not available on s390x
-  skip: true  # [py<38 or s390x]
+  skip: true  # [py<38]
   script:
     - {{ PYTHON }} -m pip install . -vv
   entry_points:
@@ -27,11 +26,12 @@ requirements:
     # Should be setuptools-git-versioning <2, see https://github.com/dolfinus/setuptools-git-versioning#pyprojecttoml
     - setuptools-git-versioning <2
     - wheel
+    - numpy {{ numpy }} 
   run:
     - python
     - jinja2 >=2.9
     - contourpy >=1
-    - numpy >=1.11.3
+    - {{ pin_compatible('numpy') }}
     - packaging >=16.8
     - pandas >=1.2
     - pillow >=7.1.0
