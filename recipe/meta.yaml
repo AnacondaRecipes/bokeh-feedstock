@@ -1,5 +1,5 @@
 {% set name = "bokeh" %}
-{% set version = "3.1.0" %}
+{% set version = "3.1.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
-  sha256: 9047dfe50a671b5e19ca588fd90a8e6bff197114a5dbd6a59cc2678942c27887
+  sha256: ba0fc6bae4352d307541293256dee930a42d0acf92e760c72dc0e7397c3a28e9
 
 build:
   number: 0
@@ -26,7 +26,7 @@ requirements:
     # Should be setuptools-git-versioning <2, see https://github.com/dolfinus/setuptools-git-versioning#pyprojecttoml
     - setuptools-git-versioning <2
     - wheel
-    - numpy {{ numpy }} 
+    - numpy {{ numpy }}
   run:
     - python
     - jinja2 >=2.9
@@ -74,12 +74,12 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
-  summary: Bokeh is an interactive visualization library for modern web browsers. 
+  summary: Bokeh is an interactive visualization library for modern web browsers.
   description: |
-    Bokeh is an interactive visualization library for modern web browsers. 
-    It provides elegant, concise construction of versatile graphics, 
-    and affords high-performance interactivity over large or streaming 
-    datasets. Bokeh can help anyone who would like to quickly and easily 
+    Bokeh is an interactive visualization library for modern web browsers.
+    It provides elegant, concise construction of versatile graphics,
+    and affords high-performance interactivity over large or streaming
+    datasets. Bokeh can help anyone who would like to quickly and easily
     make interactive plots, dashboards, and data applications.
   doc_url: https://docs.bokeh.org
   dev_url: https://github.com/bokeh/bokeh
