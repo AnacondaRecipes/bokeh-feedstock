@@ -12,8 +12,7 @@ source:
 build:
   number: 0
   skip: true  # [py<39]
-  script:
-    - {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - bokeh = bokeh.__main__:main
 
