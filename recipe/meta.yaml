@@ -19,11 +19,11 @@ build:
 requirements:
   host:
     - python
-    - colorama
+    - colorama =0.4.6
     - pip
     - setuptools
     # Should be setuptools-git-versioning <2, see https://github.com/dolfinus/setuptools-git-versioning#pyprojecttoml
-    - setuptools-git-versioning <2
+    - setuptools-git-versioning =1.13.1
     - wheel
     - numpy {{ numpy }}
   run:
@@ -80,7 +80,7 @@ about:
     and affords high-performance interactivity over large or streaming
     datasets. Bokeh can help anyone who would like to quickly and easily
     make interactive plots, dashboards, and data applications.
-  doc_url: https://docs.bokeh.org
+  doc_url: https://docs.bokeh.org/en/latest
   dev_url: https://github.com/bokeh/bokeh
 
 extra:
@@ -90,3 +90,5 @@ extra:
     - mattpap
     - ocefpaf
     - philippjfr
+  skip-lints:
+    - python_build_tool_in_run
