@@ -1,5 +1,5 @@
 {% set name = "bokeh" %}
-{% set version = "3.1.1" %}
+{% set version = "3.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,24 +7,23 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
-  sha256: ba0fc6bae4352d307541293256dee930a42d0acf92e760c72dc0e7397c3a28e9
+  sha256: cdb3a8c3109d8d91a2814f4cddea045c14d049021f7fb6ce2a6b2c15e224bb17
 
 build:
   number: 0
-  skip: true  # [py<38]
-  script:
-    - {{ PYTHON }} -m pip install . -vv
+  skip: true  # [py<39]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - bokeh = bokeh.__main__:main
 
 requirements:
   host:
     - python
-    - colorama
+    - colorama =0.4.6
     - pip
     - setuptools
     # Should be setuptools-git-versioning <2, see https://github.com/dolfinus/setuptools-git-versioning#pyprojecttoml
-    - setuptools-git-versioning <2
+    - setuptools-git-versioning =1.13.1
     - wheel
     - numpy {{ numpy }}
   run:
@@ -81,7 +80,7 @@ about:
     and affords high-performance interactivity over large or streaming
     datasets. Bokeh can help anyone who would like to quickly and easily
     make interactive plots, dashboards, and data applications.
-  doc_url: https://docs.bokeh.org
+  doc_url: https://docs.bokeh.org/en/latest/
   dev_url: https://github.com/bokeh/bokeh
 
 extra:
@@ -91,3 +90,5 @@ extra:
     - mattpap
     - ocefpaf
     - philippjfr
+  skip-lints:
+    - python_build_tool_in_run
