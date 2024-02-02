@@ -1,5 +1,5 @@
 {% set name = "bokeh" %}
-{% set version = "3.3.0" %}
+{% set version = "3.3.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
-  sha256: cdbe268f842c139ba8fa0fb43c0c55c172c8215ec5a69a2629482c63c9d4039c
+  sha256: 73b7982dc2b8df15bf660cdddc8d3825e829195c438015a5d09824f1a7028368
 
 build:
   number: 0
@@ -19,11 +19,10 @@ build:
 requirements:
   host:
     - python
-    - colorama =0.4.6
+    - colorama 0.4.6
     - pip
     - setuptools
-    # Should be setuptools-git-versioning <2, see https://github.com/dolfinus/setuptools-git-versioning#pyprojecttoml
-    - setuptools-git-versioning =1.13.1
+    - setuptools-git-versioning 1.13.1
     - wheel
     - numpy {{ numpy }}
   run:
@@ -63,8 +62,7 @@ test:
   requires:
     - pip
   commands:
-    - pip check || true   # [not win]
-    - pip check || cmd /K "exit /b 0"  # [win]
+    - pip check
     - bokeh --help
     - bokeh info
 
