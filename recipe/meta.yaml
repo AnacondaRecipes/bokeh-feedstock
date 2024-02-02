@@ -19,11 +19,10 @@ build:
 requirements:
   host:
     - python
-    - colorama =0.4.6
+    - colorama
     - pip
     - setuptools
-    # Should be setuptools-git-versioning <2, see https://github.com/dolfinus/setuptools-git-versioning#pyprojecttoml
-    - setuptools-git-versioning =1.13.1
+    - setuptools-git-versioning
     - wheel
     - numpy {{ numpy }}
   run:
@@ -63,8 +62,7 @@ test:
   requires:
     - pip
   commands:
-    - pip check || true   # [not win]
-    - pip check || cmd /K "exit /b 0"  # [win]
+    - pip check
     - bokeh --help
     - bokeh info
 
