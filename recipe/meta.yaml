@@ -19,10 +19,10 @@ build:
 requirements:
   host:
     - python
-    - colorama
+    - colorama 0.4.6
     - pip
     - setuptools
-    - setuptools-git-versioning
+    - setuptools-git-versioning 1.13.1
     - wheel
     - numpy {{ numpy }}
   run:
