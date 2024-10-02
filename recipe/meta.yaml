@@ -1,5 +1,5 @@
 {% set name = "bokeh" %}
-{% set version = "3.4.3" %}
+{% set version = "3.5.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
-  sha256: b7c22fb0f7004b04f12e1b7b26ee0269a26737a08ded848fb58f6a34ec1eb155
+  sha256: 03a54a67db677b8881834271c620a781b383ae593af5c3ea2149164754440d07
 
 build:
   number: 0
-  skip: true  # [py<39]
+  skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - bokeh = bokeh.__main__:main
@@ -51,7 +51,6 @@ test:
     - bokeh.models
     - bokeh.models.widgets
     - bokeh.plotting
-    - bokeh.sampledata
     - bokeh.server
     - bokeh.protocol
     - bokeh.protocol.messages
