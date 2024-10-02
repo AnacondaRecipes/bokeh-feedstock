@@ -19,17 +19,16 @@ build:
 requirements:
   host:
     - python
-    - colorama 0.4.6
+    - colorama
     - pip
     - setuptools
-    - setuptools-git-versioning 1.13.1
+    - setuptools-git-versioning
     - wheel
-    - numpy {{ numpy }}
   run:
     - python
     - jinja2 >=2.9
     - contourpy >=1.2
-    - {{ pin_compatible('numpy') }}
+    - numpy >=1.16
     - packaging >=16.8
     - pandas >=1.2
     - pillow >=7.1.0
