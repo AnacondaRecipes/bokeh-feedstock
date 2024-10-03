@@ -1,5 +1,5 @@
 {% set name = "bokeh" %}
-{% set version = "3.5.2" %}
+{% set version = "3.6.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
-  sha256: 03a54a67db677b8881834271c620a781b383ae593af5c3ea2149164754440d07
+  sha256: 0032dc1e76ad097b07626e51584685ff48c65481fbaaad105663b1046165867a
 
 build:
   number: 0
@@ -19,17 +19,16 @@ build:
 requirements:
   host:
     - python
-    - colorama 0.4.6
+    - colorama
     - pip
     - setuptools
-    - setuptools-git-versioning 1.13.1
+    - setuptools-git-versioning
     - wheel
-    - numpy {{ numpy }}
   run:
     - python
     - jinja2 >=2.9
     - contourpy >=1.2
-    - {{ pin_compatible('numpy') }}
+    - numpy >=1.16
     - packaging >=16.8
     - pandas >=1.2
     - pillow >=7.1.0
