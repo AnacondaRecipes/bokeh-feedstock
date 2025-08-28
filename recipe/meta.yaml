@@ -26,6 +26,7 @@ requirements:
     - pip
     - setuptools >=64
     - setuptools-git-versioning
+    - wheel
   run:
     - python
     - jinja2 >=2.9
@@ -124,5 +125,3 @@ extra:
     - mattpap
     - ocefpaf
     - philippjfr
-  skip-lints:
-    - python_build_tool_in_run
