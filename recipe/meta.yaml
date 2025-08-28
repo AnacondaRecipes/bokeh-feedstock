@@ -1,13 +1,16 @@
 {% set name = "bokeh" %}
-{% set version = "3.6.2" %}
+{% set version = "3.7.3" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
-  sha256: 2f3043d9ecb3d5dc2e8c0ebf8ad55727617188d4e534f3e7208b36357e352396
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
+    sha256: 70a89a9f797b103d5ee6ad15fb7944adda115cf0da996ed0b75cfba61cb12f2b
+  - url: https://github.com/bokeh/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
+    sha256: ee2e23878eecc655371a466e1f7b5aaea1c137ecc543c01bb12af8e15b48f7b7
+    folder: gh
 
 build:
   number: 0
@@ -21,13 +24,14 @@ requirements:
     - python
     - colorama
     - pip
-    - setuptools
+    - setuptools >=64
     - setuptools-git-versioning
     - wheel
   run:
     - python
     - jinja2 >=2.9
     - contourpy >=1.2
+    - narwhals >=1.13
     - numpy >=1.16
     - packaging >=16.8
     - pandas >=1.2
@@ -36,36 +40,71 @@ requirements:
     - tornado >=6.2
     - xyzservices >=2021.09.1
 
+# AttributeError: StamenTerrain
+{% set ignore_tests = " --ignore=gh/tests/unit/bokeh/models/test_plots.py" %}
+
 test:
+  source_files:
+    - gh/tests
   imports:
     - bokeh
     - bokeh.application
     - bokeh.application.handlers
+    - bokeh.application.handlers.code_runner
+    - bokeh.application.handlers.handler
     - bokeh.client
-    - bokeh.command
-    - bokeh.command.subcommands
-    - bokeh.core
-    - bokeh.core.property
-    - bokeh.core.validation
+    - bokeh.colors
+    - bokeh.colors.color
+    - bokeh.command.util
+    - bokeh.core.enums
+    - bokeh.core.properties
+    - bokeh.core.property._sphinx
+    - bokeh.core.property.descriptors
+    - bokeh.core.property.singletons
+    - bokeh.core.property.vectorization
+    - bokeh.core.serialization
+    - bokeh.core.templates
+    - bokeh.core.types
+    - bokeh.document
+    - bokeh.embed
+    - bokeh.embed.bundle
+    - bokeh.embed.elements
+    - bokeh.embed.server
+    - bokeh.embed.util
+    - bokeh.ext
+    - bokeh.io.doc
+    - bokeh.layouts
+    - bokeh.model
     - bokeh.models
-    - bokeh.models.widgets
-    - bokeh.plotting
-    - bokeh.server
-    - bokeh.protocol
-    - bokeh.protocol.messages
-    - bokeh.server.views
-    - bokeh.sphinxext
-    - bokeh.themes
-    - bokeh.util
+    - bokeh.palettes
+    - bokeh.resources
+    - bokeh.server.auth_provider
+    - bokeh.server.callbacks
+    - bokeh.server.tornado
+    - bokeh.settings
+    - bokeh.util.compiler
+    - bokeh.util.dependencies
+    - bokeh.util.info
+    - bokeh.util.logconfig
+    - bokeh.util.options
+    - bokeh.util.serialization
+    - bokeh.util.strings
+    - bokeh.util.terminal
+    - bokeh.util.token
+    - bokeh.util.warnings
   requires:
     - pip
+    - pytest
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    # Reducing the test scope due to failures and long runtime.
+    - pytest {{ ignore_tests }} -v gh/tests/unit/bokeh/models/
     - bokeh --help
     - bokeh info
 
 about:
-  home: https://bokeh.org/
+  home: https://bokeh.org
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
@@ -76,7 +115,7 @@ about:
     and affords high-performance interactivity over large or streaming
     datasets. Bokeh can help anyone who would like to quickly and easily
     make interactive plots, dashboards, and data applications.
-  doc_url: https://docs.bokeh.org/en/latest/
+  doc_url: https://docs.bokeh.org/en/latest
   dev_url: https://github.com/bokeh/bokeh
 
 extra:
@@ -86,5 +125,3 @@ extra:
     - mattpap
     - ocefpaf
     - philippjfr
-  skip-lints:
-    - python_build_tool_in_run
