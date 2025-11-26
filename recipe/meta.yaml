@@ -1,6 +1,5 @@
 {% set name = "bokeh" %}
 {% set version = "3.8.1" %}
-{% set ignore_tests = " --ignore=gh/tests/unit/bokeh/models/test_plots.py" %}
 
 package:
   name: {{ name|lower }}
@@ -37,10 +36,12 @@ requirements:
     - pandas >=1.2
     - pillow >=7.1.0
     - pyyaml >=3.10
-    - tornado >=6.2  # [not emscripten]
+    - tornado >=6.2
     - xyzservices >=2021.09.1
 
 # AttributeError: StamenTerrain
+{% set ignore_tests = " --ignore=gh/tests/unit/bokeh/models/test_plots.py" %}
+
 test:
   source_files:
     - gh/tests
