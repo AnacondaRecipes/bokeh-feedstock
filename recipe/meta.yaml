@@ -1,5 +1,6 @@
 {% set name = "bokeh" %}
 {% set version = "3.8.1" %}
+{% set ignore_tests = " --ignore=gh/tests/unit/bokeh/models/test_plots.py" %}
 
 package:
   name: {{ name|lower }}
@@ -13,7 +14,7 @@ source:
     folder: gh
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
@@ -40,8 +41,6 @@ requirements:
     - xyzservices >=2021.09.1
 
 # AttributeError: StamenTerrain
-{% set ignore_tests = " --ignore=gh/tests/unit/bokeh/models/test_plots.py" %}
-
 test:
   source_files:
     - gh/tests
