@@ -1,5 +1,5 @@
 {% set name = "bokeh" %}
-{% set version = "3.8.1" %}
+{% set version = "3.8.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,9 +7,9 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
-    sha256: 40df8e632de367399d06979cbd76c9e68a133a3138e1adde37c4a4715ecb4d6e
+    sha256: 8e7dcacc21d53905581b54328ad2705954f72f2997f99fc332c1de8da53aa3cc
   - url: https://github.com/bokeh/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-    sha256: f26842f8f27c2527e7ce6bb41c16d259faee43b0b9f1f60348cd837ff5622c6f
+    sha256: fcaa96a1ff17d9d0514fb46515e538e9be0c5643445ad2e451a235356b7e4b9b
     folder: gh
 
 build:
