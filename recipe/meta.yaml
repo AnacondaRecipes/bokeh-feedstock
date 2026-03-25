@@ -1,5 +1,5 @@
 {% set name = "bokeh" %}
-{% set version = "3.8.2" %}
+{% set version = "3.9.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,9 +7,9 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
-    sha256: 8e7dcacc21d53905581b54328ad2705954f72f2997f99fc332c1de8da53aa3cc
+    sha256: 775219714a8496973ddbae16b1861606ba19fe670a421e4d43267b41148e07a3
   - url: https://github.com/bokeh/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-    sha256: fcaa96a1ff17d9d0514fb46515e538e9be0c5643445ad2e451a235356b7e4b9b
+    sha256: b48431ea7d1003d8a23911ece56197d7e6baa69493059a23cdcb619388b4ff31
     folder: gh
 
 build:
@@ -33,11 +33,14 @@ requirements:
     - narwhals >=1.13
     - numpy >=1.16
     - packaging >=16.8
-    - pandas >=1.2
     - pillow >=7.1.0
     - pyyaml >=3.10
     - tornado >=6.2
     - xyzservices >=2021.09.1
+  run_constrained:
+    # First versions which support Bokeh 3.9.0
+    # Does not need to be updated with new Bokeh releases
+    - panel >=1.8.10
 
 # AttributeError: StamenTerrain
 {% set ignore_tests = " --ignore=gh/tests/unit/bokeh/models/test_plots.py" %}
@@ -114,7 +117,7 @@ about:
     and affords high-performance interactivity over large or streaming
     datasets. Bokeh can help anyone who would like to quickly and easily
     make interactive plots, dashboards, and data applications.
-  doc_url: https://docs.bokeh.org/en/latest
+  doc_url: https://docs.bokeh.org
   dev_url: https://github.com/bokeh/bokeh
 
 extra:
