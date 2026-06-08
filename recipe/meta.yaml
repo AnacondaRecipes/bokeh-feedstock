@@ -1,15 +1,17 @@
 {% set name = "bokeh" %}
-{% set version = "3.9.0" %}
+{% set version = "3.9.1" %}
+{% set ignore_tests = " --ignore=gh/tests/unit/bokeh/models/test_plots.py" %}
 
+# AttributeError: StamenTerrain
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
-    sha256: 775219714a8496973ddbae16b1861606ba19fe670a421e4d43267b41148e07a3
+    sha256: 1463d3c84fba61a925ea6ace0b4d3d9c0160ca214f6851edbfed6dc27e172b60
   - url: https://github.com/bokeh/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-    sha256: b48431ea7d1003d8a23911ece56197d7e6baa69493059a23cdcb619388b4ff31
+    sha256: 3508084ffe58a83a74430a97d207ef91f236bcde282a6971b9b670b2e63a224b
     folder: gh
 
 build:
@@ -41,9 +43,6 @@ requirements:
     # First versions which support Bokeh 3.9.0
     # Does not need to be updated with new Bokeh releases
     - panel >=1.8.10
-
-# AttributeError: StamenTerrain
-{% set ignore_tests = " --ignore=gh/tests/unit/bokeh/models/test_plots.py" %}
 
 test:
   source_files:
