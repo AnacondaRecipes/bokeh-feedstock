@@ -25,7 +25,7 @@ requirements:
     - python
     - setuptools >=77
     - setuptools-git-versioning
-    - colorama
+    - colorama =0.4.6
   run:
     - python
     - jinja2 >=2.9
