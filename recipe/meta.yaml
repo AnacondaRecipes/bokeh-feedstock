@@ -1,5 +1,5 @@
 {% set name = "bokeh" %}
-{% set version = "3.9.0" %}
+{% set version = "3.9.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,25 +7,25 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/bokeh-{{ version }}.tar.gz
-    sha256: 775219714a8496973ddbae16b1861606ba19fe670a421e4d43267b41148e07a3
-  - url: https://github.com/bokeh/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-    sha256: b48431ea7d1003d8a23911ece56197d7e6baa69493059a23cdcb619388b4ff31
+    sha256: 1463d3c84fba61a925ea6ace0b4d3d9c0160ca214f6851edbfed6dc27e172b60
+  - url: https://github.com/{{ name }}/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
+    sha256: 3508084ffe58a83a74430a97d207ef91f236bcde282a6971b9b670b2e63a224b
     folder: gh
 
 build:
   number: 0
-  skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - bokeh = bokeh.__main__:main
+  skip: true  # [py<310]
 
 requirements:
   host:
-    - python
-    - colorama
     - pip
+    - python
     - setuptools >=77
     - setuptools-git-versioning
+    - colorama =0.4.6
   run:
     - python
     - jinja2 >=2.9
