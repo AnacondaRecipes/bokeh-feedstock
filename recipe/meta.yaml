@@ -124,3 +124,6 @@ extra:
     - mattpap
     - ocefpaf
     - philippjfr
+  skip-lints:
+    # doc_url is redirecting
+    - reachable_url
