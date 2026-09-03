@@ -1,8 +1,6 @@
 {% set name = "bokeh" %}
 {% set version = "3.10.0" %}
-{% set ignore_tests = " --ignore=gh/tests/unit/bokeh/models/test_plots.py" %}
 
-# E   AttributeError: StamenTerrain
 package:
   name: {{ name }}
   version: {{ version }}
@@ -19,7 +17,7 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - bokeh = bokeh.__main__:main
-  skip: true  # [py<310]
+  skip: true  # [py<312]
 
 requirements:
   host:
@@ -39,6 +37,9 @@ requirements:
     - pyyaml >=3.10
     - tornado >=6.2
     - xyzservices >=2021.09.1
+
+# E   AttributeError: StamenTerrain
+{% set ignore_tests = " --ignore=gh/tests/unit/bokeh/models/test_plots.py" %}
 
 test:
   source_files:
