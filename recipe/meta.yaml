@@ -37,6 +37,11 @@ requirements:
     - pyyaml >=3.10
     - tornado >=6.2
     - xyzservices >=2021.09.1
+  run_constrained:
+    # Optional extras from upstream pyproject.toml; bounds only, nothing is installed.
+    - bokeh_sampledata >=2025.0  # sampledata extra
+    - pandas >=2.0  # extra
+    - selenium >=4.2,<5  # export extra (~=4.2)
 
 test:
   source_files:
