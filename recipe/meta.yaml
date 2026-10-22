@@ -38,10 +38,13 @@ requirements:
     - tornado >=6.2
     - xyzservices >=2021.09.1
   run_constrained:
-    # Optional extras from upstream pyproject.toml; bounds only, nothing is installed.
-    - bokeh_sampledata >=2025.0  # sampledata extra
-    - pandas >=2.0  # extra
-    - selenium >=4.2,<5  # export extra (~=4.2)
+    # sampledata extra
+    - bokeh_sampledata >=2025.0
+    # extra
+    - contourpy >=1.2
+    - pandas >=2.0
+    # export
+    - selenium >=4.2,<5
 
 test:
   source_files:
