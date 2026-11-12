@@ -29,7 +29,6 @@ requirements:
   run:
     - python
     - jinja2 >=2.9
-    - contourpy >=1.2
     - narwhals >=1.13
     - numpy >=1.16
     - packaging >=16.8
